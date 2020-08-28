@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HBD</title>
+</head>
+<style>
+    html, body{
+        padding: 0px;
+        margin: 0px;
+        /* width: 100%; */
+    }
+    .demo{
+        margin: 0px;
+        padding-top: 80px;
+        background: black;
+        width: 100%;
+        height: 100vh;
+        /* background-size: 100% 100%; */
+    }
+    h1{
+        margin-top: 50px;
+        color: white;
+        text-align: center;
+    }
+
+    .ml9 {
+  position: relative;
+  font-weight: 200;
+  font-size: 5em;
+}
+
+.ml9 .text-wrapper {
+  position: relative;
+  display: inline-block;
+  padding-top: 0.2em;
+  padding-right: 0.05em;
+  padding-bottom: 0.1em;
+  overflow: hidden;
+}
+
+.ml9 .letter {
+  transform-origin: 50% 100%;
+  display: inline-block;
+  line-height: 1em;
+}
+
+    .ml2 {
+  font-weight: 900;
+  font-size: 5em;
+}
+
+.ml2 .letter {
+  display: inline-block;
+  line-height: 1em;
+}
+</style>
+<body>
+    
+    <div class="demo">
+        <h1 class="ml2"><center>Happy</center></h1>
+        <h1 class="ml9">
+            <span class="text-wrapper">
+              <span class="letters"><center>Birthday</center></span>
+            </span>
+          </h1>
+        
+        <!-- <h1 class = "ml2"><center>Happy</center> <br> <center>Birthday</center></h1> -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
+    </div>
+     
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="jquery.fireworks.js"></script>
+    <script>
+         
+$(".demo").fireworks({
+	opacity: 0.2, // Sets the opacity on the page
+	sound: true // if you want users to hear the firework sound
+}); 
+    </script>
+
+    <script>
+        var textWrapper = document.querySelector('.ml2');
+textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
+
+anime.timeline({loop: true})
+  .add({
+    targets: '.ml2 .letter',
+    scale: [4,1],
+    opacity: [0,1],
+    translateZ: 0,
+    easing: "easeOutExpo",
+    duration: 950,
+    delay: (el, i) => 70*i
+  }).add({
+    targets: '.ml2',
+    opacity: 0,
+    duration: 1000,
+    easing: "easeOutExpo",
+    delay: 1000
+  });
+    </script>
+
+    <script>
+        var textWrapper = document.querySelector('.ml9 .letters');
+textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
+
+anime.timeline({loop: true})
+  .add({
+    targets: '.ml9 .letter',
+    scale: [0, 1],
+    duration: 1500,
+    elasticity: 600,
+    delay: (el, i) => 45 * (i+1)
+  }).add({
+    targets: '.ml9',
+    opacity: 0,
+    duration: 1000,
+    easing: "easeOutExpo",
+    delay: 1000
+  });
+    </script>
+</body>
+</html>
